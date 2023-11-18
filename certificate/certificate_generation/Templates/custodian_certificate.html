@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custodian Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .certificate-container {
+            display: flex;
+            flex-direction: column; /* Align certificate and button vertically */
+            align-items: center;
+        }
+
+        .certificate {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            border: px solid #000;
+            text-align: left;
+        }
+
+        .line-spacing {
+            margin-bottom: 20px;
+        }
+
+        .row-spacing {
+            margin-bottom: 40px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .signature {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .preparer {
+            text-align: left;
+        }
+
+        .checker {
+            text-align: right;
+        }
+
+        button {
+            background-color: #0074cc;
+            color: #fff;
+            padding: 10px 50px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media print {
+            body {
+                display: block;
+                text-align: center;
+            }
+
+            .certificate-container {
+                display: block;
+            }
+
+            .certificate {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            button {
+                display: none; /* Hide the button when printing */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate">
+            <h3 class="line-spacing text-center">CUSTODIAN CERTIFICATE</h3>
+            <p class="line-spacing">
+                <strong> PIN NO: </strong> {{ student.pin_number }}
+            </p>
+
+            <p class="line-spacing">
+                <strong>Date: </strong>{{ student.date }}
+            </p>
+
+            <p class="line-spacing">
+                This is to certify that <strong>Mr. {{ student.student_full_name }}</strong>, S/o Sri. {{ student.student_father_name }} is a bonafide student of this Institute studying <strong>{{ student.department }}</strong> during the academic Year. We hereby confirm that the following original certificates of the said student are under our possession. His date of birth as per our records is <strong>{{ student.date_of_birth }}</strong>.
+            </p>
+
+            <p class="row-spacing">
+                1.
+            </p>
+
+            <p class="row-spacing">
+                2.
+            </p>
+
+            <p class="row-spacing">
+                3.
+            </p>
+
+            <p>
+                This certificate is issued for the purpose of applying
+            </p>
+
+            <div class="signature">
+                <p class="preparer">Prepared by</p>
+                <p class="checker">Checked by</p>
+            </div>
+        </div>
+
+     <button onclick="printAndHide()">Print</button>
+    </div>
+
+    <script>
+        function printAndHide() {
+            window.print(); // Print the page
+            document.querySelector("button").style.display = "none"; // Hide the button
+        }
+    </script>
+</body>
+</html>

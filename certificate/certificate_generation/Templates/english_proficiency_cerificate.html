@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>English Proficiency Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .certificate-container {
+            width: 800px; /* Adjust the width as needed */
+            height: 600px; /* Adjust the height as needed */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: space-between; /* Place elements at the start and end */
+            align-items: center;
+            border: px solid #000; /* Add a border to simulate the certificate */
+        }
+
+        .certificate {
+            width: 100%;
+            padding: 20px;
+            border: none; /* Remove the border from the inner certificate */
+            text-align: left;
+        }
+
+        .line-spacing {
+            margin-bottom: 20px;
+        }
+
+        .row-spacing {
+            margin-bottom: 40px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .signature {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .preparer {
+            text-align: left;
+        }
+
+        .checker {
+            text-align: right;
+        }
+
+        button {
+            background-color: #0074cc;
+            color: #fff;
+            padding: 10px 50px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate">
+            <h3 class="line-spacing text-center">ENGLISH PROFICIENCY CERTIFICATE</h3>
+            <p class="line-spacing">
+                This is to certify that Mr.<strong>{{ student.student_full_name }}</strong> , S/o Sri. {{ student.student_father_name }}, Roll No: <strong>{{ student.pin_number }} </strong> is a bonafide student of this Institute studying
+                <strong>{{ student.department }}</strong> branch.
+            </p>
+
+            <p class="line-spacing">
+                The medium of instruction for the entire four-year course is in ENGLISH.
+            </p>
+
+            <p class="line-spacing">
+                This certificate has been issued on the specific request of the student for
+                applying to International Universities for admission into Masters Program.
+            </p>
+
+            <p class="row-spacing">
+                <strong>Place:</strong> {{ student.place }}
+            </p>
+
+            <p>
+                <strong>Date:</strong> {{ student.date }}
+            </p>
+        </div>
+        <button onclick="printCertificate()">Print</button>
+    </div>
+
+    <script>
+        function printCertificate() {
+            window.print(); // Print the certificate
+        }
+    </script>
+</body>
+</html>

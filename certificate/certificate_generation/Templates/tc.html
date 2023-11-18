@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transfer Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .certificate-container {
+            width: 800px; /* Set the desired width */
+            height: 600px; /* Set the desired height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 3px solid #000; /* Add a border to simulate the certificate */
+        }
+
+        .certificate {
+            width: 100%;
+            padding: 20px;
+            text-align: left;
+            margin-bottom: 20px; /* Create space between certificate and button */
+        }
+
+        .table {
+            width: 100%;
+        }
+
+        .table th, .table td {
+            padding: 5px 10px;
+            text-align: left;
+        }
+
+        .left-column {
+            width: 30%;
+        }
+
+        button {
+            background-color: #0074cc;
+            color: #fff;
+            padding: 10px 50px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <h3 style="text-align:center;">TRANSFER CERTIFICATE</h3>
+        <table class="table">
+            <tr>
+                <th class="left-column">GU/GST/TC/2023/{{ student.tc_number }}</th>
+                <td>PIN: {{ student.pin_number }}</td>
+            </tr>
+            <tr>
+                <th class="left-column">Admission No:</th>
+                <td>{{ student.admission_number }}</td>
+            </tr>
+            <tr>
+                <th class="left-column">Name of the Student (in full):</th>
+                <td>{{ student.student_full_name }}</td>
+            </tr>
+            <tr>
+                <th class="left-column">Gender:</th>
+                <td>{{ student.gender }}</td>
+            </tr>
+            <tr>
+                <th class="left-column">Father's Name:</th>
+                <td>{{ student.student_father_name }}</td>
+            </tr>
+            <tr>
+                <th class="left-column">Date of Birth as entered in admission register:</th>
+                <td>{{ student.date_of_birth }}</td>
+            </tr>
+            <tr>
+                <th class="left-column">Nationality:</th>
+                <td>{{ student.nationality }}</td>
+            </tr>
+            <tr>
+                <th class="left-column">Religion:</th>
+                <td>{{ student.religion }}</td>
+            </tr>
+            <tr>
+                <th class="left-column">Date of Admission to the Institute:</th>
+                <td>{{ student.date }}</td>
+            </tr>
+            <tr>
+                <th class="left-column">Date on which he left the Institute:</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="left-column">Class in which he was studying at the time of leaving: </th>
+                <td>Completed - B.Tech in Electrical & Electronics Engineering</td>
+            </tr>
+        </table>
+        <div class="signature">
+            <p>Date Prepared By</p>
+            <p style="text-align:right;">Checked By</p>
+        </div>
+         <button onclick="printAndHide()">Print</button>
+    </div>
+
+    <script>
+        function printAndHide() {
+            window.print(); // Print the page
+            document.querySelector("button").style.display = "none"; // Hide the button
+        }
+    </script>
+</body>
+</html>

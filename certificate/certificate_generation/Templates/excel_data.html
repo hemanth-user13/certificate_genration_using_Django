@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Upload Excel Data</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+        background: #fff;
+        padding: 100px;
+        border: 2px solid #3498db;
+        border-radius: 5px;
+        max-width: 400px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #3498db; /* Updated color for title */
+        font-size: 40px;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      label {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      .custom-file-upload {
+        border: 2px solid #3498db;
+        background: #3498db;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+      }
+
+      .custom-file-upload:hover {
+        background: #2980b9;
+      }
+
+      /* Add styles for the upload button */
+      button {
+        background: #de7614;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 90px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background: #2980b9;
+      }
+
+      .error-message {
+        color: #ff0000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Upload Excel Data</h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="excel_file">Choose an Excel file:</label>
+        <label class="custom-file-upload">
+          Browse
+          <input type="file" name="excel_file" id="excel_file" accept=".xlsx" onchange="displayFileName(this)" />
+        </label>
+        <p id="file-name"></p>
+        <button type="submit" onclick="uploadButtonClick()">Upload</button>
+      </form>
+      {% if error_message %}
+      <p class="error-message">{{ error_message }}</p>
+      {% endif %} {% if success_message %}
+      <!-- Display success message if it exists -->
+      <p class="success-message" style="color: red">{{ success_message }}</p>
+      {% endif %}
+    </div>
+
+    <!-- JavaScript for animation when the upload button is clicked -->
+    <script>
+      function uploadButtonClick() {
+        const uploadButton = document.querySelector("button");
+        uploadButton.style.backgroundColor = "#007bff"; /* Change color on click */
+        setTimeout(() => {
+          uploadButton.style.backgroundColor = "#3498db"; /* Reset color */
+        }, 500);
+      }
+
+      function displayFileName(input) {
+        const fileName = input.value.split("\\").pop();
+        const fileNameElement = document.getElementById("file-name");
+        fileNameElement.textContent = `Selected file: ${fileName}`;
+      }
+    </script>
+  </body>
+</html>

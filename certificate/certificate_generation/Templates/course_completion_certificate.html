@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Official Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .certificate {
+            width: 100%; /* Full width for printing */
+            max-width: 800px; /* Adjust the max-width as needed */
+            padding: 20px;
+            border: px solid #000; /* Correct the border syntax */
+            text-align: left;
+            font-size: 18px;
+            margin: 0 auto; /* Center horizontally */
+        }
+
+        .line-spacing {
+            margin-bottom: 30px; /* Add space between lines */
+
+        }
+
+        .row-spacing {
+            margin-bottom: 60px; /* Add space between rows */
+        }
+
+        /* Style for the "Print" button */
+        button {
+            background-color: #0074cc;
+            color: #fff;
+            padding: 10px 50px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block; /* Make the button a block element */
+            margin: 0 auto; /* Center align the button horizontally */
+        }
+
+        @media print {
+            body {
+                display: block; /* Switch to block display for printing */
+                text-align: center;
+            }
+
+            .certificate {
+                max-width: 100%; /* Full width for printing */
+                margin: 0; /* Remove any extra margin for printing */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="certificate">
+
+        <h3 class="line-spacing" align="center">TO WHOMSOEVER IT MAY CONCERN</h3>
+
+        <p class="line-spacing">
+            This is to certify that Mr.<strong>{{ student.student_full_name }}</strong>, S/o Sri. {{ student.student_father_name }} is a bonafide student of this Institute, studying <strong>{{ student.department }}</strong>, PIN NO:<strong>{{ student.pin_number }}</strong> during the Academic Year {{ student.academic_year }}. Final semester examinations are scheduled during and the results of final examinations are planned in.
+        </p>
+
+        <p class="line-spacing">
+            This certificate has been issued on the specific request of the student for applying to International Universities for admission into Masters Program.
+        </p>
+
+        <p class="row-spacing">
+            <strong>Date:</strong> {{ student.date }}<br>
+            <strong>Place:</strong> {{ student.place }}
+        </p>
+
+        <!-- Print button with JavaScript to hide it on click -->
+         <button onclick="printAndHide()">Print</button>
+
+        <script>
+            function printAndHide() {
+                window.print(); // Print the page
+                document.querySelector("button").style.display = ""; // Hide the button
+            }
+        </script>
+    </div>
+</body>
+</html>

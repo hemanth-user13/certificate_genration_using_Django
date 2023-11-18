@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Completion Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .certificate-container {
+            width: 800px; /* Adjust the width as needed */
+            height: 600px; /* Adjust the height as needed */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: space-between; /* Place elements at the start and end */
+            align-items: center;
+            border: px solid #000; /* Add a border to simulate the certificate */
+        }
+
+        .certificate {
+            width: 100%;
+            padding: 20px;
+            border: none; /* Remove the border from the inner certificate */
+            text-align: left;
+        }
+
+        .line-spacing {
+            margin-bottom: 20px; /* Add space between lines */
+        }
+
+        .row-spacing {
+            margin-bottom: 40px; /* Add space between rows */
+        }
+
+        .text-center {
+            text-align: center; /* Center align text */
+        }
+
+        .signature {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .preparer {
+            text-align: left;
+        }
+
+        .checker {
+            text-align: right;
+        }
+
+        button {
+            background-color: #0074cc;
+            color: #fff;
+            padding: 10px 50px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate">
+            <h3 class="line-spacing ">GU/GST/CC/2023/{{ student.tc_number }}</h3>
+
+            <p>
+                <strong>Date:</strong>{{ student.date }}
+            </p>
+
+            <p class="line-spacing">
+                This is to certify that <strong>Mr. {{ student.student_full_name }}</strong>, S/o Sri. {{ student.student_father_name }},<strong> Roll No: {{ student.pin_number }}</strong>, has studied B.Tech {{student.department}} in this Institute during the academic period <strong>{{ student.academic_year }}</strong>.
+            </p>
+
+            <p class="line-spacing">
+                During this period, his conduct was __________________
+            </p>
+
+            <div class="signature">
+                <div class="preparer">
+                    Prepared by
+                </div>
+                <div class="checker">
+                    Checked by
+                </div>
+            </div>
+        </div>
+        <button onclick="printCertificate()">Print</button>
+    </div>
+
+    <script>
+        function printCertificate() {
+            window.print(); // Print the certificate
+        }
+    </script>
+</body>
+</html>

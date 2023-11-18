@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin: 0;
+      }
+
+      /* Add the CSS for the navbar */
+      .navbar {
+        background-color: #007bff;
+        color: #fff;
+        display: flex;
+        justify-content: space-between; /* Align items neatly */
+        align-items: center; /* Vertically align items */
+        padding: 10px 20px; /* Increased padding for better alignment */
+      }
+
+      .navbar a {
+        text-decoration: none; /* Remove underlines for the link */
+      }
+
+      /* CSS for the animated button */
+      .animated-button {
+        background-color: #0056b3;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+
+      .animated-button:hover {
+        background-color: #004285;
+        transform: scale(1.05);
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Center vertically and horizontally */
+        height: 50vh;
+      }
+
+      label {
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input[type="number"] {
+        width: 40%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .custom-button {
+        width: 40%;
+        height: 40px;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .custom-button:hover {
+        background-color: #078f2e;
+      }
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70%; /* Adjust the width to your preference */
+        padding: 20px; /* Add padding to create a separate box */
+        background-color: #fff; /* Add background color for the box */
+        border: 1px solid #ccc; /* Add a border */
+        border-radius: 5px; /* Add border radius for rounded corners */
+      }
+
+      .certificate-select {
+        width: 100%; /* Make the select box full width */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .button-container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .certificate-container {
+        display: none;
+        margin: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 70%;
+        background-color: #fff;
+        transition: display 0.3s, opacity 0.3s;
+      }
+
+      /* New styles for the certificate iframe */
+      iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+      }
+
+      /* Add a CSS class for the animated certificate container */
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 1s ease-in forwards;
+      }
+
+      /* Define a keyframes animation for fading in */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Add the navbar at the top of the page -->
+    <div class="navbar">
+      <h1>Certificate Generation</h1>
+      <a href="{% url 'excel_data' %}">
+        <button class="animated-button">Upload Excel Sheet</button>
+      </a>
+    </div>
+
+    <div class="container">
+      <div class="form-container">
+        <form action="{% url 'generate_certificate' %}" method="post">
+          {% csrf_token %}
+          <label for="roll_number">Enter Roll-Number:</label>
+          <input type="number" name="roll_number" required />
+          <select class="certificate-select" name="certificate_type">
+            <option value="course_completion">
+              Course Completion Certificate
+            </option>
+            <option value="custodian">Custodian</option>
+            <option value="tc">TC</option>
+            <option value="study_and_conduct">Study And Conduct</option>
+            <option value="english_proficiency">
+              English proficiency certificate
+            </option>
+          </select>
+          <div class="button-container"> <!-- Added a container for alignment -->
+            <button
+              type="submit"
+              class="custom-button animated-button"
+              onclick="toggleCertificateDisplay()"
+            >
+              Generate
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Certificate Display Area -->
+    <div class="certificate-container" id="certificate-container">
+      <iframe src="{% url 'generate_certificate' %}" frameborder="0"></iframe>
+    </div>
+
+    <!-- JavaScript code for animation -->
+    <script>
+      function toggleCertificateDisplay() {
+        var certificateContainer = document.getElementById("certificate-container");
+        if (certificateContainer.style.display === "none") {
+          certificateContainer.style.display = "block";
+          // Add the 'fade-in' class to trigger the fade-in animation
+          certificateContainer.classList.add("fade-in");
+        } else {
+          certificateContainer.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
